@@ -68,6 +68,7 @@ for(t in 1:trialNum){
       accuracyCV[i] <- sum(confMat[row(confMat)==col(confMat)])/sum(confMat)*100
     }
     meanAccuracyCV <- mean(accuracyCV)
+    
     if(meanAccuracyCV == 100){
       bestHid[t] = 2*hiddenCV
       break;
@@ -90,6 +91,7 @@ for(t in 1:trialNum){
   testTime[t] <- toc()$toc - bef
   
   predLabel <- apply(pred, 1, which.is.max)
+  
   confMat <- caret::confusionMatrix(
     factor(predLabel,levels = 1:classNum),
     factor(testLabel,levels = 1:classNum)
